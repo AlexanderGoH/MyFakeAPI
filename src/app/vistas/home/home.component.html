@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div style="max-width: 1400px;">
+    <h2>Data APIFUT</h2>
+    <button type="button" class="btn btn-outline-primary" (click)="nuevoTeam()">Agregar país</button>
+
+    <div class="container">
+        <div class="row">
+            <div class="card col-sm-6 mb-3 mb-sm-0" *ngFor="let pais of data.Teams">
+                <img src="{{pais.flag}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{pais.name}}</h5>
+                    <a class="btn btn-primary" (click)="editarTeam(pais.id)">Editar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
+<app-footer></app-footer>

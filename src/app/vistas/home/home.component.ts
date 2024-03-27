@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { Router } from '@angular/router';
 
-import { ListaPaisesI } from '../../modelos/listaPaises.interface';
+import { ListaProductosI } from '../../modelos/listaProductos.interface';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +11,8 @@ import { ListaPaisesI } from '../../modelos/listaPaises.interface';
 })
 
 export class HomeComponent implements OnInit{
-  data: any = {};
-/*   paises:ListaPaisesI[]; */
+  /* data: any = {}; */
+  productos: ListaProductosI[] = [];
 
   constructor(private apiService: ApiService, private router: Router){}
 
@@ -22,16 +22,15 @@ export class HomeComponent implements OnInit{
 
   llenarData(){
     this.apiService.getData().subscribe( data => {
-      this.data = data;
-      console.log(this.data);
+      this.productos = data;
     })
   }
 
-  editarTeam(id:number){
-    this.router.navigate(['editar', id])
+  editarProducto(id:any){
+    this.router.navigate(['editar', id]);
   }
 
-  nuevoTeam(){
+  agregarProducto(){
     this.router.navigate(['agregar']);
   }
 }

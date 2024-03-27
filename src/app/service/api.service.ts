@@ -1,25 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { PaisI } from '../modelos/pais.interface';
-import { ListaPaisesI } from '../modelos/listaPaises.interface';
+import { ListaProductosI } from '../modelos/listaProductos.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private urlApi = 'https://myfakeapi.com/api/football/teams/';
+  private urlApi = 'https://fakestoreapi.com/products';
 
   constructor(private http: HttpClient) { }
 
-  public getData(): Observable<ListaPaisesI[]>{
-    return this.http.get<ListaPaisesI[]>(this.urlApi);
+  public getData(): Observable<ListaProductosI[]>{
+    return this.http.get<ListaProductosI[]>(this.urlApi);
   }
 
-  getSinglePais(id:any): Observable<PaisI>{
-    let direccion = this.urlApi + id;
-    return this.http.get<PaisI>(direccion);
-  }
 }

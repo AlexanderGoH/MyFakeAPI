@@ -1,25 +1,39 @@
-<app-header></app-header>
-<div style="max-width: 1400px;">
-
-    <div class="container">
-        <div class="d-flex justify-content-between mt-3 mb-3">
-            <h2>Productos</h2>
-            <button type="button" class="btn btn-dark" (click)="agregarProducto()">Agregar producto</button>
+ 
+  <body>
+    <header>
+      <h2>ProductsAPI</h2>
+      <div class="nav-icon">
+        <a (click)="agregarProducto()" style="cursor: pointer;"><i class='bx bx-plus-circle'></i></a>
+      </div>
+    </header>
+    <div class="container pb-4">
+      <div class="row">
+        <div class="col-md-4 " *ngFor="let producto of productos">
+          <figure class="card card-product-grid">
+            <a href="#" class="img-wrap" data-abc="true">
+              <img src="{{producto.images[0]}}" alt="Imagen del producto">
+            </a>
+              <figcaption class="info-wrap">
+                  <div class="row">
+                      <div class="col-md-9">
+                        <a href="#" class="title" data-abc="true">{{producto.title}}</a>
+                      </div>
+                  </div>
+              </figcaption>
+              <div class="bottom-wrap">
+                <a class="btn btn-primary float-right" data-abc="true" (click)="editarProducto(producto.id)"> Editar</a>
+                  <div class="price-wrap">
+                    <span class="price h5">${{producto.price}}</span>
+                    <br>
+                    <small class="text-success">{{producto.category.name}}</small>
+                  </div>
+              </div>
+          </figure>
         </div>
-        
-        <div class="row">
-            <div class="card col-sm-6 mb-3 mb-sm-0" *ngFor="let producto of productos">
-                <img src="{{producto.image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{producto.title}}</h5>
-                    <p class="card-text">${{producto.price}}</p>
-                    <a class="btn btn-primary" (click)="editarProducto(producto.id)">Editar</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
     
     
-</div>
+  </body>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>

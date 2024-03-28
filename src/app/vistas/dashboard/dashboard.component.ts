@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../service/api.service';
+import { Component } from '@angular/core';
+import { ApiService } from '../../servicios/api/api.service';
 import { Router } from '@angular/router';
 
 import { ListaProductosI } from '../../modelos/listaProductos.interface';
@@ -7,28 +7,26 @@ import { ListaProductosI } from '../../modelos/listaProductos.interface';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  productos: ListaProductosI[] = [];
 
-  constructor(private apiService: ApiService, private router: Router){}
-
-  ngOnInit(): void {
-    this.llenarData();
-  }
-
-  llenarData(){
-    this.apiService.getData().subscribe( data => {
+  
+  productos: ListaProductosI[] = []
+  
+  constructor(private api:ApiService, private router:Router) {}
+  
+  ngOnInit(){
+    this.api.getProducts().subscribe((data) => {
       this.productos = data;
     })
   }
 
-  editarProducto(id:string){
+  editarProducto(id: number){
     this.router.navigate(['editar', id]);
   }
 
-  agregarProducto(){
+  agregarProducto(){ 
     this.router.navigate(['agregar']);
   }
 }

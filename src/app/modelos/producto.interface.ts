@@ -1,8 +1,8 @@
-export interface ProductoI {
-    id:string;
-    title:string;
-    price:string;
-    category:string;
-    description:string;
-    image:string;
+export interface ProductoI{
+    id: string;
+    title: string;
+    price: string;
+    description: string;
+    categoryId: string;
+    images: string[];
 }

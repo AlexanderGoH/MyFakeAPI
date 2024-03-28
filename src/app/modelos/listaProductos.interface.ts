@@ -1,8 +1,12 @@
 export interface ListaProductosI {
-    id:string;
-    title:string;
-    price:string;
-    category:string;
-    description:string;
-    image:string;
-}
+    id: number;
+    title: string;
+    price: string;
+    description: string;
+    category: {
+        id: number;
+        name: string;
+        image: string;
+    }
+    images: string[];
+    } 

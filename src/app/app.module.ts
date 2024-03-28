@@ -1,38 +1,29 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './templates/footer/footer.component';
-import { HeaderComponent } from './templates/header/header.component';
+import { FooterComponent } from './plantillas/footer/footer.component';
+
+import {ReactiveFormsModule, FormsModule} from '@angular/forms'
+import { HttpClientModule} from '@angular/common/http';
 import { AgregarComponent } from './vistas/agregar/agregar.component';
-import { EditarComponent } from './vistas/editar/editar.component';
-import { DashboardComponent } from './vistas/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    HeaderComponent,
-    EditarComponent,
-    AgregarComponent,
-    DashboardComponent,
+    routingComponents,
+    AgregarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    ReactiveFormsModule, 
     FormsModule,
-    ReactiveFormsModule
-
+    HttpClientModule
   ],
-  providers: [
-    provideClientHydration(),
-    provideHttpClient(withFetch()),
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

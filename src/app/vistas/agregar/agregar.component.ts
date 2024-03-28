@@ -1,36 +1,57 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-import { ApiService } from '../../service/api.service';
-import { ProductoI } from '../../modelos/producto.interface';
+import { ApiService } from '../../servicios/api/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
-  styleUrl: './agregar.component.scss'
+  styleUrl: './agregar.component.css'
 })
 export class AgregarComponent {
-
-  agregarForm = new FormGroup({
-    id: new FormControl(),
-    title: new FormControl(''),
-    description: new FormControl(''),
-    price: new FormControl(''),
-    category: new FormControl(''),
-    image: new FormControl('')
+  nuevoForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    categoryId: new FormControl('', Validators.required),
+    images: new FormControl('', Validators.required),
   });
 
-  constructor(private api:ApiService, private router:Router){}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
-  postForm(form: any){
-    this.api.postProducto(form).subscribe( data => {
-      console.log(data);
-    });
+  postForm(form: any) {
+    if (this.nuevoForm.valid) {
+      const newProduct: any = {
+        title: form.title,
+        price: form.price,
+        description: form.description,
+        categoryId: form.categoryId,
+        images: [form.images],
+      };
+      console.log(newProduct);
+      this.api.postProducto(newProduct).subscribe(
+        (data: any) => {
+          this.router.navigate(['dashboard']);
+          console.log('Producto creado exitosamente:', data);
+          // Puedes realizar cualquier acción adicional aquí, como navegar a otra página
+        },
+        (error: any) => {
+          console.error('Error al crear el producto:', error);
+          // Puedes mostrar un mensaje de error al usuario u otras acciones de manejo de errores aquí
+          console.log(newProduct)
+        }
+      );
+    } else {
+      console.error('El formulario es inválido. Por favor, complete todos los campos.');
+      
+    }
   }
 
-  salir(){
+  salir() {
     this.router.navigate(['dashboard']);
   }
-
 }

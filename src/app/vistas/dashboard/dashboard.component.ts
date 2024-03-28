@@ -5,13 +5,11 @@ import { Router } from '@angular/router';
 import { ListaProductosI } from '../../modelos/listaProductos.interface';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss'
 })
-
-export class HomeComponent implements OnInit{
-  /* data: any = {}; */
+export class DashboardComponent {
   productos: ListaProductosI[] = [];
 
   constructor(private apiService: ApiService, private router: Router){}
@@ -26,7 +24,7 @@ export class HomeComponent implements OnInit{
     })
   }
 
-  editarProducto(id:any){
+  editarProducto(id:string){
     this.router.navigate(['editar', id]);
   }
 

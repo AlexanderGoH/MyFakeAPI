@@ -20,7 +20,7 @@ export class AgregarComponent {
   constructor(
     private api: ApiService,
     private router: Router,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   postForm(form: any) {
@@ -32,16 +32,16 @@ export class AgregarComponent {
         categoryId: form.categoryId,
         images: [form.images],
       };
+
+
       console.log(newProduct);
       this.api.postProducto(newProduct).subscribe(
         (data: any) => {
           this.router.navigate(['dashboard']);
           console.log('Producto creado exitosamente:', data);
-          // Puedes realizar cualquier acción adicional aquí, como navegar a otra página
         },
         (error: any) => {
           console.error('Error al crear el producto:', error);
-          // Puedes mostrar un mensaje de error al usuario u otras acciones de manejo de errores aquí
           console.log(newProduct)
         }
       );
@@ -50,7 +50,6 @@ export class AgregarComponent {
       
     }
   }
-
   salir() {
     this.router.navigate(['dashboard']);
   }

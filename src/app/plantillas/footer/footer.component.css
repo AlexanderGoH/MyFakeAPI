@@ -2,7 +2,7 @@
 footer {
     display: flex;
     justify-content: space-around;
-    background-color: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgba(15, 13, 60, 1) 0%, rgba(131, 0, 200, 1) 50%, rgba(255, 0, 254, 1) 100%);;
     padding: 20px 0;
   }
   
